@@ -22,6 +22,8 @@ namespace Backend.Context.Entities
         [Required]
         public string Password { get; set; }
 
+        public string Salt { get; set; }
+
         public string Phone { get; set; }
 
         public byte[] Large { get; set; }

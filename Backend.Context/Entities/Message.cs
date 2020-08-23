@@ -22,6 +22,5 @@ namespace Backend.Context.Entities
 
         public DateTime SentAt { get; set; } = DateTime.Now;
 
-
     }
 }

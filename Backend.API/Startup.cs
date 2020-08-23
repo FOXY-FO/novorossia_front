@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Backend.Context;
 using Backend.Data.Repos;
 using Microsoft.AspNetCore.Builder;
@@ -29,8 +30,10 @@ namespace Backend.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            
+            services.AddScoped<IUsersRepo, UsersRepo>();
 
-            services.AddScoped<IUserRepo, UserRepo>();
+            services.AddSwaggerGen();
 
             // using Microsoft.EntityFrameworkCore;
             services.AddDbContext<DataContext>(opt => {
@@ -50,6 +53,12 @@ namespace Backend.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(opt => {
+                opt.SwaggerEndpoint("v1/swagger.json", "MY APP");
+            });
 
             app.UseAuthorization();
 
